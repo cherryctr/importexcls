@@ -24,7 +24,7 @@
                 <div class="card-body">
                 <div class="media d-flex">
                     <div class="media-body text-left">
-                    <h3 class="danger">{{ $angkaMasjid }}</h3>
+                    <h3 class="danger">{{ $data['angkaMasjid'] }}</h3>
                     <span>MASJID</span>
                     </div>
                     <div class="align-self-center">
@@ -42,7 +42,7 @@
                 <div class="card-body">
                 <div class="media d-flex">
                     <div class="media-body text-left">
-                    <h3 class="danger">{{ $angkaMushola }}</h3>
+                    <h3 class="danger">{{ $data['angkaMushola'] }}</h3>
                     <span>MUSHOLA</span>
                     </div>
                     <div class="align-self-center">
@@ -60,7 +60,7 @@
                 <div class="card-body">
                 <div class="media d-flex">
                     <div class="media-body text-left">
-                    <h3 class="danger">{{ $angkaGerejaKristen }}</h3>
+                    <h3 class="danger">{{ $data['angkaGerejaKristen'] }}</h3>
                     <span>GEREJA KERISTEN</span>
                     </div>
                     <div class="align-self-center">
@@ -79,7 +79,7 @@
                 <div class="card-body">
                 <div class="media d-flex">
                     <div class="media-body text-left">
-                    <h3 class="danger">{{ $angkaGerejaKatolik }}</h3>
+                    <h3 class="danger">{{ $data['angkaGerejaKatolik']}}</h3>
                     <span>GEREJA KATOLIK</span>
                     </div>
                     <div class="align-self-center">
@@ -98,7 +98,7 @@
                 <div class="card-body">
                 <div class="media d-flex">
                     <div class="media-body text-left">
-                    <h3 class="danger">{{ $angkaPureHindu }}</h3>
+                    <h3 class="danger">{{ $data['angkaPureHindu']}}</h3>
                     <span>PURE HINDU</span>
                     </div>
                     <div class="align-self-center">
@@ -116,7 +116,7 @@
                 <div class="card-body">
                 <div class="media d-flex">
                     <div class="media-body text-left">
-                    <h3 class="danger">{{ $angkaPureHindu }}</h3>
+                    <h3 class="danger">{{ $data['angkaPureBudha'] }}</h3>
                     <span>PURE BUDHA</span>
                     </div>
                     <div class="align-self-center">
@@ -134,7 +134,7 @@
                 <div class="card-body">
                 <div class="media d-flex">
                     <div class="media-body text-left">
-                    <h3 class="danger">{{ $angkaKelenteng }}</h3>
+                    <h3 class="danger">{{ $data['angkaKelenteng'] }}</h3>
                     <span>KELENTENG KONGHUCHU</span>
                     </div>
                     <div class="align-self-center">
@@ -194,38 +194,47 @@
                     <thead>
                         <tr>
                           
-                            <th>Kategori</th>
-                            <th>Nama Tempat Ibadah</th>
-                           
-                            <th>Kabupaten</th>
-                            
+                        
                             <th>Kecamatan</th>
-                            <th>Kelurahan</th>
+                           
+                            <th>Masjid</th>
+                            <th>Mushola</th>
+                            <th>Gereja Kristen</th>
                             
-                            <th>Alamat</th>
-                            <th>Action</th>
+                            <th>Gereja Katolik</th>
+                            <th>Pure Hindu</th> 
+                            <th>Pure Budha</th>
+                            <th>Kelenteng</th>
+                            <th>total</th>
+                            
+                         
                             
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach($dataAll as $dat)
-                        <tr>
-                            <td>{{ $dat->kategoris->nama_kategori }}</td>
-                            <td>{{ $dat->nama }}</td>
-                            <td>{{ $dat->kota->name }}</td>
-                            <td>{{ $dat->kecamatan->name }}</td>
-                            <td>{{ $dat->kelurahan->name }}</td>
-                            <td>{{ $dat->alamat }}</td>
-                            <td>
-                            <div class="btn-group">
-                                            <a class="btn btn-sm btn-primary" href="{{  url('edit/rumahibadah/'.$dat->id_rumah) }}"><i class="fas fa-edit"></i></a> 
-                                            &nbsp;
-                                            <a href="{{ url('/hapus/'.$dat->id_rumah) }}" class="btn btn-sm btn-danger" type="button" ><i class="fas fa-trash"></i></a>
-                                            </div>
-                                </td>
-                        </tr>
-                        @endforeach
+                      
+                                @foreach($dataAll as $lets)
+                                <tr>
+                                   
+                                 
+                                    <td><a href="">{{ $lets->kecamatan->name }}</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                
+
+                                    
+                                   
+                                </tr>  
+                                @endforeach
+                             
                     </tbody>
                 </table>
                     </div>
@@ -242,30 +251,11 @@
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-    @include('layout.modal.modal')
+   
     
     </div>
     </div>
 
     
 </div>
-@stop
-@push('scripts')
-<script>
-
-function deleteConfirm(id_rumah) {
-            swal({
-                    title: "Kamu Yakin ?",
-                    text: "Ini juga akan menghapus data ini !",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((dt) => {
-                    if (dt) {
-                        window.location.href = "{{ url('admin/news') }}/" + id + "/delete";
-                    }
-                });
-        }
-</script>
-@endpush
+@endsection
